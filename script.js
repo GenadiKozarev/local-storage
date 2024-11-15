@@ -6,7 +6,9 @@ const items = JSON.parse(localStorage.getItem('items')) || [];
 function addItem(e) {
     e.preventDefault();
     const input = this.querySelector('[name=item]');
-    const title = input.value;
+    // no empty strings allowed
+    if (!input.value.trim()) return;
+    const title = input.value.trim();
     const item = {
         title,
         done: false,
@@ -34,6 +36,20 @@ const populateList = (plates = [], platesList) => {
         .join('');
 };
 
+const toggleDone = e => {
+    // skip targets that are not an input
+    if (!e.target.matches('input')) return;
+    const el = e.target;
+    const index = el.dataset.index;
+    // check/uncheck
+    items[index].done = !items[index].done;
+    // save to localStorage in order to persist the 'done' state of an item
+    localStorage.setItem('items', JSON.stringify(items));
+    // update list
+    populateList(items, itemsList);
+};
+
 addItems.addEventListener('submit', addItem);
+itemsList.addEventListener('click', toggleDone);
 
 populateList(items, itemsList);
