@@ -21,7 +21,7 @@ svg {
     background: #0000001a;
     padding: 20px;
     border-radius: 50%;
-    width: 200px;
+    width: 150px;
     margin-bottom: 50px;
 }
 
@@ -74,8 +74,17 @@ h2 {
     margin-top: 20px;
 }
 
-.add-items input {
+.add-items input,
+.btn-delete {
     padding: 10px;
     outline: 0;
     border: 1px solid #0000001a;
+}
+
+.btn-delete {
+    display: block;
+    position: relative;
+    left: 215px;
+    top: 10px;
+    background-color: #ff000024;
 }
